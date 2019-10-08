@@ -1,8 +1,15 @@
-<h1>Movie search</h1>
+{% extends "base.html" %}
 
-<a href="/">Home</a>
-<h2>Favorites</h2>
+{% block content %}
+  <body>
+    <h1>Movie search</h1>
 
-{% for movie in favorites %}
-  <p>{{ movie["title"] }}</p>
-{% endfor %}
+    <a href="/">Home</a>
+    <h2>Favorites</h2>
+
+    {% for movie in favorites %}
+      <p>{{ movie["title"] }}</p>
+    {% endfor %}
+  </body>
+
+{% endblock %}

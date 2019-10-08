@@ -1,9 +1,18 @@
-<h1>Movie search</h1>
+{% extends "base.html" %}
 
-<a href="/">Home</a>
-<h2>Movie Details</h2>
+{% block content %}
+  <body>
+    
+    <h1>Movie search</h1>
 
-{% if movie %}
-  <p>{{ movie['title'] }}</p>
-  <p>{{ movie['description'] }}</p>
-{% endfor %}
+    <a href="/">Home</a>
+    <h2>Movie Details</h2>
+
+    {% if movie %}
+      <p>{{ movie['title'] }}</p>
+      <p>{{ movie['description'] }}</p>
+    {% endfor %}
+
+  </body>
+
+{% endblock %}

@@ -15,18 +15,7 @@ with open('config.json') as j:
 @app.route('/')
 def index():
         user = {'username': 'Arthur'}
-        test = conf['test']
-        movie_results = [
-                {
-                        'movietitle': {'movie': 'Waking Life'},
-                        'director': {'director': 'Richard Linklater'}
-                },
-                {
-                        'movietitle': {'movie': 'Wonder Woman'},
-                        'director': {'director': 'Patty Jenkins'}
-                }
-        ]
-        return render_template('index.html', title='Home', user=user, movie_results=movie_results, test=test)
+        return render_template('index.html', title='Home', user=user)
         
 
 # @app.route('favorites')
