@@ -5,15 +5,17 @@ from flask import Flask, escape, request, render_template
 import json
 import requests
 from requests.exceptions import HTTPError
-import conf
 
 
 app = Flask(__name__)
 
+with open('config.json') as j:
+        conf = json.load(j)
+
 @app.route('/')
 def index():
         user = {'username': 'Arthur'}
-        test = conf.Conf['test']
+        test = conf['test']
         movie_results = [
                 {
                         'movietitle': {'movie': 'Waking Life'},
@@ -43,9 +45,16 @@ def favorites():
 @app.route('/search', methods=['POST'])
 def search():
     """if POST, query movie api for data and return results."""
-    #x = requests.get('http://www.omdbapi.com/?apikey=815bb1ac&t=')
+    searchtype = 'title'
     query = request.form['title']
-    return f'Hello, {query}!'
+    if searchtype == 'title': param = 't'
+    url = "http://www.omdbapi.com/?apikey=815bb1ac&{}={}".format(param,query)
+    x = requests.get(url)
+    results = json.loads(x.text)
+    movie_title = results['Title']
+    movie_director = results['Director']
+    
+    return f'Hello, you searched for {movie_title} by {movie_director}!'
 
 # @app.route('/movie/<movie_oid>')
 # def movie_detail():
