@@ -1,11 +1,6 @@
-<html>
-  <head>
-    {% if title %}
-    <title>{{ title }} - Movie Search</title>
-    {% else %}
-    <title>Welcome to Movie Search!</title>
-    {% endif %}
-  </head>
+{% extends "base.html" %}
+
+{% block content %}
 
   <body>
     <h1>Moview search</h1>
@@ -15,7 +10,7 @@
     <a href="/favorites">Favorites</a>
 
     {% for movie in movie_results %}
-    <div><p>{{ movie.movietitle.movie }} by {{movie.director.director }} </p></div>
+    <div><p><b>{{ movie.movietitle.movie }}</b> by {{movie.director.director }} </p></div>
     {% endfor %}
 
     <form action="/search" method="post">
@@ -25,4 +20,5 @@
       <input type="submit" />
     </form>
   </body>
-</html>
+
+  {% endblock %}

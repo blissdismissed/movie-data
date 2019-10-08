@@ -1,0 +1,14 @@
+<html>
+  <head>
+    {% if title %}
+    <title>{{ title }} - Movie Search</title>
+    {% else %}
+    <title>Welcome to Movie Search!</title>
+    {% endif %}
+  </head>
+  <body>
+      <div>Movie Search <a href="/favorites">Favorites</a></div>
+      <hr>
+      {% block content %}{% endblock %}
+  </body>
+</html>
