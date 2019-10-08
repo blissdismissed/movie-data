@@ -3,7 +3,8 @@ import json
 class Conf:
         def __init__(self):
             # load and store configuration and update object dictionary
-            conf = json.loads("config.json")
+            with open('config.json') as j:
+                conf = json.load(j)
             self.__dict__.update(conf)
         
         def __getitem__(self, k):
