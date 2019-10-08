@@ -7,7 +7,19 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+        user = {'username': 'Arthur'}
+        movie_results = [
+                {
+                        'movietitle': {'movie': 'Waking Life'},
+                        'director': {'director': 'Richard Linklater'}
+                },
+                {
+                        'movietitle': {'movie': 'Wonder Woman'},
+                        'director': {'director': 'Patty Jenkins'}
+                }
+        ]
+        return render_template('index.html', title='Home', user=user, movie_results=movie_results)
+        
 
 # @app.route('favorites')
 # def favorites():
