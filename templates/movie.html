@@ -5,13 +5,10 @@
 
     <h1>Movie Search</h1>
 
-    <a href="/">Home</a>
-    <h2>Movie Details</h2>
+    <h2>Movie Details for "{{ title }}"</h2>
 
-    {% if movie %}
-      <p>{{ movie['title'] }}</p>
-      <p>{{ movie['description'] }}</p>
-    {% endfor %}
+      <p>{{ movieSelect['Title'] }}</p>
+      <p>{{ movieSelect['Plot'] }}</p>
 
   </body>
 

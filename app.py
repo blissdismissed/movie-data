@@ -49,12 +49,20 @@ def search():
     
     return render_template('search_results.html', title=query, searchResults=results) #f'Hello, you searched for {movie_title} by {movie_director}!' # this should actually go to the search results page template
 
-# @app.route('/movie/<movie_oid>')
-# def movie_detail():
-#     """if fetch data from movie database by oid and display info."""
-#     qs_name = request.args.get('name', '')
-#     qs_oid = request.args.get('oid', '')
-#     return f'Hello, {escape(name)}!'
+@app.route('/movie/<movie_imdbID>')
+def movie_detail(movie_imdbID):
+    """if fetch data from movie database by oid and display info."""
+    #qs_name = request.args.get('name', '')
+    #qs_oid = request.args.get('oid', '')
+    param = 'i'
+    query = movie_imdbID
+    print("IMDB ID: ",query)
+    url = "http://www.omdbapi.com/?apikey=815bb1ac&{}={}".format(param,query)
+    x = requests.get(url)
+    results = json.loads(x.text)
+    title = results['Title']
+    #print('Results: ', results)
+    return render_template('movie.html', title=title, movieSelect=results) #f'Hello, {escape(name)}!'
 
 if __name__ == "__main__":
         port = int(os.environ.get("PORT", 5000))        # look into alternate ways to do this?
