@@ -1,7 +1,7 @@
 import sys
 import math
 import os
-from flask import Flask, escape, request, render_template
+from flask import Flask, escape, request, render_template, flash
 import json
 import requests
 from requests.exceptions import HTTPError
@@ -45,16 +45,20 @@ def favorites():
 @app.route('/search', methods=['POST'])
 def search():
     """if POST, query movie api for data and return results."""
-    searchtype = 'title'
+    # include some validation on the search input
+    searchtype = 'search'
     query = request.form['title']
-    if searchtype == 'title': param = 't'
+    #if query.validate_on_submit():
+    #    flash('Search cannot be blank')
+    print(query)
+    if searchtype == 'search': param = 's'
     url = "http://www.omdbapi.com/?apikey=815bb1ac&{}={}".format(param,query)
     x = requests.get(url)
     results = json.loads(x.text)
-    movie_title = results['Title']
-    movie_director = results['Director']
+    results = results['Search']
+    print(type(results))
     
-    return f'Hello, you searched for {movie_title} by {movie_director}!'
+    return render_template('search_results.html', title=query, searchResults=results) #f'Hello, you searched for {movie_title} by {movie_director}!' # this should actually go to the search results page template
 
 # @app.route('/movie/<movie_oid>')
 # def movie_detail():

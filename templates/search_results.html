@@ -1,8 +1,18 @@
-<h1>Movie search</h1>
+{% extends "base.html" %}
 
-<a href="/">Home</a>
-<h2>Search Results</h2>
+{% block content %}
 
-{% for movie in results %}
-  <a href="/movie/{{movie['oid']}}"">{{ movie["title"] }}</p>
-{% endfor %}
+  <body>
+    <h1>Movie search</h1>
+
+    <h3>Results for <b>"{{ title }}"</b></h3>
+
+    <ul style="list-style-type: disk;">
+    {% for movie in searchResults %}
+      <li><a href="/movie/{{movie['oid']}}">{{ movie['Title'] }}</a> ({{ movie['Year'] }})  {{ movie['Type'] }}</li>
+    {% endfor %}
+    </ul>
+
+  </body>
+
+{% endblock %}
