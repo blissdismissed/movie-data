@@ -1,6 +1,11 @@
+import sys
+import math
 import os
 from flask import Flask, escape, request, render_template
 import json
+import requests
+from requests.exceptions import HTTPError
+import conf
 
 
 app = Flask(__name__)
@@ -8,6 +13,7 @@ app = Flask(__name__)
 @app.route('/')
 def index():
         user = {'username': 'Arthur'}
+        test = conf.Conf['test']
         movie_results = [
                 {
                         'movietitle': {'movie': 'Waking Life'},
@@ -18,7 +24,7 @@ def index():
                         'director': {'director': 'Patty Jenkins'}
                 }
         ]
-        return render_template('index.html', title='Home', user=user, movie_results=movie_results)
+        return render_template('index.html', title='Home', user=user, movie_results=movie_results, test=test)
         
 
 # @app.route('favorites')
@@ -37,6 +43,7 @@ def favorites():
 @app.route('/search', methods=['POST'])
 def search():
     """if POST, query movie api for data and return results."""
+    #x = requests.get('http://www.omdbapi.com/?apikey=815bb1ac&t=')
     query = request.form['title']
     return f'Hello, {query}!'
 
@@ -50,5 +57,6 @@ def search():
 if __name__ == "__main__":
         port = int(os.environ.get("PORT", 5000))        # look into alternate ways to do this?
         app.run(host='0.0.0.0', port=port)
+
 
 
