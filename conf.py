@@ -1,7 +1,7 @@
 import json
 
 class Conf:
-        def __init__(self, confpath):
+        def __init__(self):
             # load and store configuration and update object dictionary
             conf = json.loads("config.json")
             self.__dict__.update(conf)
