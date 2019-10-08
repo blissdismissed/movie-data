@@ -39,3 +39,11 @@ the browser opens a new page with information about that specific movie.
 
 Heroku Link to application:
 https://flaskheroapp.herokuapp.com
+
+Port binding error upon pushing to heroku, need to look into
+Things to do:
+    implement favorties
+    add css stylsheets
+    setup backend
+    build out tests
+    add in continuous intergration
