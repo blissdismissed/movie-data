@@ -9,6 +9,8 @@ from flask_bootstrap import Bootstrap
 from conf import Config
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
+import models
+
 
 
 app = Flask(__name__)
