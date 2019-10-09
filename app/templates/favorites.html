@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <body>
+<div class="col-md-4">
     <h1>Movie Search</h1>
 
     <a href="/">Home</a>
@@ -10,6 +10,6 @@
     {% for movie in favorites %}
       <p>{{ movie["title"] }}</p>
     {% endfor %}
-  </body>
+</div>
 
 {% endblock %}

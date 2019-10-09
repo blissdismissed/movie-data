@@ -1,15 +1,21 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <body>
-
-    <h1>Movie Search</h1>
-
+  <div class="col-md-4">
     <h2>Movie Details for "{{ title }}"</h2>
+    <br>
 
-      <p>{{ movieSelect['Title'] }}</p>
+      <h2>{{ movieSelect['Title'] }} ({{ movieSelect['Year'] }})</h2>
+      <h3>Directed By: {{ movieSelect['Director'] }}</h3>
+      <h5>IMDB Rating: {{ movieSelect['Ratings'][0]['Value'] }}</h5>
       <p>{{ movieSelect['Plot'] }}</p>
+      <br>
+      <p><b>Actors: </b>{{ movieSelect['Actors'] }}</p>
+      <br>
+      <h5><input type="button"value="Favorite this movie!" title="{{ movieSelect['imdbID'] }}"></h5>
+      <br>
+      <a href="https://www.imdb.com/title/{{ movieSelect['imdbID'] }}">More Information</a></p>
 
-  </body>
+  </div>
 
 {% endblock %}
