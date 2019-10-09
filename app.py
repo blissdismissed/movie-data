@@ -5,9 +5,12 @@ from flask import Flask, escape, request, render_template, flash
 import json
 import requests
 from requests.exceptions import HTTPError
+from flask_bootstrap import Bootstrap
 
 
 app = Flask(__name__)
+
+bootstrap = Bootstrap(app)
 
 with open('config.json') as j:
         conf = json.load(j)
