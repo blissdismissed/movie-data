@@ -12,7 +12,18 @@
       <br>
       <p><b>Actors: </b>{{ movieSelect['Actors'] }}</p>
       <br>
-      <h5><input type="button"value="Favorite this movie!" title="{{ movieSelect['imdbID'] }}"></h5>
+      <br>
+      <span id="{{ movieSelect['imdbID'] }}">
+          <h5><input id="1" type="button"value="Favorite this movie!" title="{{ movieSelect['imdbID'] }}"></h5>
+      </span>
+      <script>
+        var sourceElem = document.getElementById('1')
+        function addfavorite(sourceElem) {
+          $.post('/addfavorite', {
+            text: $(sourceElem).title()
+          });
+        }
+      </script>
       <br>
       <a href="https://www.imdb.com/title/{{ movieSelect['imdbID'] }}">More Information</a></p>
 

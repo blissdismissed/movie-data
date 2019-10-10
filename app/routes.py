@@ -27,12 +27,12 @@ def index():
 #         return data
 #     return render_template('favorites.html')
 
-@app.route('/addfavorite')
+@app.route('/addfavorite', methods=['POST'])
 def favorites():
     """if query params are passed, write movie to json file."""
     data = {}
     data['favorites'] = []
-    newfavorite = request.href['title']
+    newfavorite = request.form['text']
     print(newfavorite)
     data['favorites'].append(newfavorite)
     with open('data.json', 'w') as outfile:
