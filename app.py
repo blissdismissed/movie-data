@@ -6,7 +6,7 @@ import json
 import requests
 from requests.exceptions import HTTPError
 from flask_bootstrap import Bootstrap
-from conf import Config
+from conf import Config, Conf, Favs
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from app.models import User, Favorites

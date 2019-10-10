@@ -8,11 +8,12 @@
 
         <h3>Search for Movie and TV Show Titles</h3>
 
-    <form action="/search" method="post">
-      <label>Title</label>
-      <input name="title" />
-
-      <input type="submit" />
+    <form action="/search" method="post" nonvalidate>
+      <p>
+        <label>Title</label>
+        <input name="title" required minlength="3" />
+        <input type="submit" />
+      </p>
     </form>
   </div>
 
