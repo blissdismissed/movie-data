@@ -21,15 +21,15 @@ def index():
 @app.route('/favorites')
 def readfavorites():
     #Read out favorited movies.
-    filename = os.path.join('data.json')
+    filename = os.path.join("data.json")
     with open(filename) as data_file:
         fav_list = json.load(data_file)
-        fav_list = fav_list['favorites']
+        fav_list = fav_list["favorites"]
 
-    with open('config.json') as datafile:
+    with open("config.json") as datafile:
             data = json.load(datafile)
-            appid = data['omdb_api_key']
-    param = 'i'
+            appid = data["omdb_api_key"]
+    param = "i"
     movielist = []
     for movie in fav_list:
         print("movie: ", movie)
@@ -39,7 +39,7 @@ def readfavorites():
         movielist.append(results)
 
     print("List: ", movielist)
-    return render_template('favorites.html', movieID=movielist)
+    return render_template("favorites.html", movieID=movielist)
 
 @app.route('/translate', methods=['POST'])
 def favorites():
@@ -51,7 +51,7 @@ def favorites():
         
     newfavorite = request.form['text']
     print(data['favorites'])
-    data['favorites'].append(newfavorite)
+    data["favorites"].append(newfavorite)
     print(data['favorites'])
     with open('data.json', 'w') as outfile:
             json.dump(data, outfile)
@@ -62,17 +62,17 @@ def search():
     """if POST, query movie api for data and return results."""
     # include some validation on the search input
     searchtype = 'search'
-    query = request.form['title']
+    query = request.form["title"]
     with open('config.json') as datafile:
             data = json.load(datafile)
-            appid = data['omdb_api_key']
+            appid = data["omdb_api_key"]
             #print(appid)
     #print("Query: ",query)
     if searchtype == 'search': param = 's'
     url = "http://www.omdbapi.com/?apikey={}&{}={}".format(appid,param,query)
     x = requests.get(url)
     results = json.loads(x.text)
-    results = results['Search']
+    results = results["Search"]
     #print(type(results))
     
     return render_template('search_results.html', title=query, searchResults=results) 
