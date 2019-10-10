@@ -13,15 +13,15 @@
       <p><b>Actors: </b>{{ movieSelect['Actors'] }}</p>
       <br>
       <br>
-      <span id="{{ movieSelect['imdbID'] }}">
-          <h5><input id="1" type="button"value="Favorite this movie!" title="{{ movieSelect['imdbID'] }}"></h5>
+      <span id="translation">
+        <a href="javascript:translate('{{ movieSelect['imdbID'] }}');">{{ ('Favorite this movie!') }}</a>
       </span>
+      <br>
       <script>
-        var sourceElem = document.getElementById('1')
-        function addfavorite(sourceElem) {
-          $.post('/addfavorite', {
-            text: $(sourceElem).title()
-          });
+        function translate(sourceElem) {
+          $.post('/translate', {
+            text: sourceElem
+          }).do
         }
       </script>
       <br>
