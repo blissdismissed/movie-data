@@ -15,4 +15,3 @@ from app.models import User, Favorites
 
 
 
-
