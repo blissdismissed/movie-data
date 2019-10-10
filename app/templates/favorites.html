@@ -2,14 +2,15 @@
 
 {% block content %}
 <div class="col-md-4">
-    <h1>Movie Search</h1>
 
-    <a href="/">Home</a>
-    <h2>Favorites</h2>
+    <h2>Your Favorites</h2>
 
-    {% for movie in favorites %}
-      <p>{{ movie["title"] }}</p>
-    {% endfor %}
+    <ul style="list-style-type: disk;">
+      {% for movie in movieID %}
+        <li><a href="/movie/{{movie['imdbID']}}">{{ movie['Title'] }}</a> ({{ movie['Year'] }})  {{ movie['Type'] }}</li>
+      {% endfor %}
+    </ul>
+
 </div>
 
 {% endblock %}

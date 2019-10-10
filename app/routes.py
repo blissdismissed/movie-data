@@ -18,30 +18,44 @@ def index():
         return render_template('index.html', title='Home', user=user)
         
 
-# @app.route('favorites')
-# def favorites():
-#     #Read out favorited movies.
-#     filename = os.path.join('data.json')
-#     with open(filename) as data_file:
-#         data = json.load(data_file)
-#         return data
-#     return render_template('favorites.html')
+@app.route('/favorites')
+def readfavorites():
+    #Read out favorited movies.
+    filename = os.path.join('data.json')
+    with open(filename) as data_file:
+        fav_list = json.load(data_file)
+        fav_list = fav_list['favorites']
+
+    with open('config.json') as datafile:
+            data = json.load(datafile)
+            appid = data['omdb_api_key']
+    param = 'i'
+    movielist = []
+    for movie in fav_list:
+        print("movie: ", movie)
+        url = "http://www.omdbapi.com/?apikey={}&{}={}".format(appid,param,movie)
+        x = requests.get(url)
+        results = json.loads(x.text)
+        movielist.append(results)
+
+    print("List: ", movielist)
+    return render_template('favorites.html', movieID=movielist)
 
 @app.route('/translate', methods=['POST'])
 def favorites():
     """if query params are passed, write movie to json file."""
-    print("Here")
-    s = "Here"
-    v = request.form['text']
-    print("Text: ", v)
-    return s
-#     data = {}
-#     data['favorites'] = []
-#     newfavorite = request.form['text']
-#     print(newfavorite)
-#     data['favorites'].append(newfavorite)
-#     with open('data.json', 'w') as outfile:
-#             json.dump(data, outfile)
+#     print("Here")
+    filename = os.path.join('data.json')
+    with open(filename) as data_file:
+        data = json.load(data_file)
+        
+    newfavorite = request.form['text']
+    print(data['favorites'])
+    data['favorites'].append(newfavorite)
+    print(data['favorites'])
+    with open('data.json', 'w') as outfile:
+            json.dump(data, outfile)
+    return data
 
 @app.route('/search', methods=['POST'])
 def search():
