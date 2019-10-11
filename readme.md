@@ -3,47 +3,18 @@
 > Create a webpage that will utilize an external API to request movie data.
 The webpage will be served by a back-end which will have the ability to persist data.
 
-#### Back-end Instructions
+### About this repo
 
-- Within this repo you will find a flask api (`app.py`).
-
-
-- The back-end contain several errors,
-so you will need to do some debugging to ensure is working correctly.
-
-- The page should have a form that accepts a users query.
-- the api uses the [OMDBapi](http://www.omdbapi.com/)
+This repo is a coding challenge to create a movie searching webpage that uses [OMDBapi](http://www.omdbapi.com/)
 to search for matching movies and then display the results.
- - *Example*: If a user searches for `Star Wars`, a list of every Star Wars movie will be displayed.
 
-- When the user clicks on a search result display detailed information about that movie in a new page.
-- *Example*: If a user is viewing a list of every Star Wars movie and clicks on `Star Wars: A New Hope`,
-the browser opens a new page with information about that specific movie.
+When a user wants more information about the movie they can click on movie link for supporting information. They also have the ability to favorite a movie and keep a running list of favorites.
 
-- Users should be able to "favorite" a movie and have it persisted via the provided back-end.
+The application is built using Flask and Python.
 
-- Provide a link to display favorited movies.
+### Deployment
 
-#### Things we are looking for
-
-- Clear, simple code
-- Explanatory comments for beginners
-- Consistent Naming Conventions
-- Valid HTML, CSS, Python, and JavaScript
-
-#### Deliverables
-
-- Please send us back a link to a git repo with the completed code challenge. 
-
-- Include a README.md file in your repo with a link to your application deployed on Heroku or Digital Ocean.
+This is deployed using Heroku.
 
 Heroku Link to application:
 https://flaskheroapp.herokuapp.com
-
-Port binding error upon pushing to heroku, need to look into
-Things to do:
-    implement favorties
-    add css stylsheets
-    setup backend
-    build out tests
-    add in continuous intergration

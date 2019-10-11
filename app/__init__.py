@@ -15,9 +15,6 @@ bootstrap = Bootstrap(app)
 
 from app import routes, models, errors
 
-#port = int(os.environ.get("PORT", 5000))
-
-
 def create_app(config_class=Config):
     # check configuration
     if not app.debug and not app.testing:
@@ -38,5 +35,3 @@ def create_app(config_class=Config):
         app.logger.info('Movie Search Startup')
 
     return app
-
-#app.run(host='0.0.0.0', port=port)
