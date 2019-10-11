@@ -32,13 +32,13 @@ def readfavorites():
     param = "i"
     movielist = []
     for movie in fav_list:
-        print("movie: ", movie)
+        #print("movie: ", movie)
         url = "http://www.omdbapi.com/?apikey={}&{}={}".format(appid,param,movie)
         x = requests.get(url)
         results = json.loads(x.text)
         movielist.append(results)
 
-    print("List: ", movielist)
+    #print("List: ", movielist)
     return render_template("favorites.html", movieID=movielist)
 
 @app.route('/translate', methods=['POST'])
@@ -50,9 +50,9 @@ def favorites():
         data = json.load(data_file)
         
     newfavorite = request.form['text']
-    print(data['favorites'])
+    #print(data['favorites'])
     data["favorites"].append(newfavorite)
-    print(data['favorites'])
+    #print(data['favorites'])
     with open('data.json', 'w') as outfile:
             json.dump(data, outfile)
     return data
