@@ -26,14 +26,15 @@ def readfavorites():
         fav_list = json.load(data_file)
         fav_list = fav_list["favorites"]
 
-    with open("config.json") as datafile:
-            data = json.load(datafile)
-            appid = data["omdb_api_key"]
+    #with open("config.json") as datafile:
+    #        data = json.load(datafile)
+    #        appid = data["omdb_api_key"]
+    APPID = os.environ.get('OMDB_API_KEY')
     param = "i"
     movielist = []
     for movie in fav_list:
         #print("movie: ", movie)
-        url = "http://www.omdbapi.com/?apikey={}&{}={}".format(appid,param,movie)
+        url = "http://www.omdbapi.com/?apikey={}&{}={}".format(APPID,param,movie)
         x = requests.get(url)
         results = json.loads(x.text)
         movielist.append(results)
@@ -63,13 +64,14 @@ def search():
     # include some validation on the search input
     searchtype = 'search'
     query = request.form["title"]
-    with open('config.json') as datafile:
-            data = json.load(datafile)
-            appid = data["omdb_api_key"]
+    #with open('config.json') as datafile:
+    #        data = json.load(datafile)
+    #        appid = data["omdb_api_key"]
             #print(appid)
     #print("Query: ",query)
+    APPID = os.environ.get('OMDB_API_KEY')
     if searchtype == 'search': param = 's'
-    url = "http://www.omdbapi.com/?apikey={}&{}={}".format(appid,param,query)
+    url = "http://www.omdbapi.com/?apikey={}&{}={}".format(APPID,param,query)
     x = requests.get(url)
     results = json.loads(x.text)
     results = results["Search"]
@@ -83,7 +85,8 @@ def movie_detail(movie_imdbID):
     param = 'i'
     query = movie_imdbID
     #print("IMDB ID: ",query)
-    url = "http://www.omdbapi.com/?apikey=815bb1ac&{}={}".format(param,query)
+    APPID = os.environ.get('OMDB_API_KEY')
+    url = "http://www.omdbapi.com/?apikey={}&{}={}".format(APPID,param,query)
     x = requests.get(url)
     results = json.loads(x.text)
     title = results['Title']
